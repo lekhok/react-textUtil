@@ -1,5 +1,6 @@
 import Navbar from "./Components/Navbar/Navbar"
-import TextForm from "./Components/Textform/Textform"
+import TextForm from "./Components/Textform/TextForm"
+
 
 const App = () => {
   return (
