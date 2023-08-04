@@ -13,6 +13,7 @@ Compiled with Vite, tutorial has Create-React-App <br>
 Implemented time read in seconds and minutes -> to be displayed in round off seconds (1 second) and minutes are rounded off upto 2 decimal places accuracy<br>
 Added paste from clipboard functionality <br>
 Uses React-hot-toast <br>
+Uses updated React-Router-Dom <br>
 
 <br>
 
