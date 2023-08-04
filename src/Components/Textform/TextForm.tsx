@@ -27,7 +27,9 @@ const TextForm: React.FC<TextFormProps> = (props) => {
         return { value: timeValue, timeUnit: timeUnit };
       };
 
-    const copyNotify = () => toast.success('Text copied sucessfully')
+    const copyNotify = () => toast.success('Text copied sucessfully');
+    const pasteNotifyFail = () => toast.error('Paste Fail');
+    const pasteNotifySuccess = () => toast.success('Clipboard Pasted')
 
     const handleUcClick = (): void => {
         let newText = text.toUpperCase();
@@ -54,6 +56,17 @@ const TextForm: React.FC<TextFormProps> = (props) => {
       };
 
 
+      const handlePaste = async (): Promise<void> => {
+        try {
+          const clipboardText = await navigator.clipboard.readText();
+          setText(clipboardText);
+          pasteNotifySuccess();
+        } catch (error) {
+          pasteNotifyFail();
+        }
+      };
+
+
     const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
 
         setText(e.target.value)
@@ -76,6 +89,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
                 <button className="btn btn-primary mx-2" onClick={handleLcClick}>To lowercase</button>
                 <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
                 <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
+                <button className="btn btn-primary mx-2" onClick={handlePaste}>Paste Text</button>
             </div>
 
             <div className="container my-3">
