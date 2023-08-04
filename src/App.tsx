@@ -16,7 +16,8 @@ const App = () => {
     if (mode=='light')
     {
       setMode('dark')
-      document.body.style.backgroundColor = 'grey'
+      document.body.style.backgroundColor = '#27374D'
+      
     } 
     else {
       setMode('light')
@@ -30,7 +31,7 @@ const App = () => {
 
       <div className="container my-3">
       
-       <TextForm heading="Enter your text below" />
+       <TextForm heading="Enter your text below" mode = {mode}/>
 
       </div>
       {/* <About /> */}

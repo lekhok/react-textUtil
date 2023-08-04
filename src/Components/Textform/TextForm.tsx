@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import toast , { Toaster } from "react-hot-toast";
 
 
@@ -7,6 +7,7 @@ import toast , { Toaster } from "react-hot-toast";
 
 interface TextFormProps {
     heading: string;
+    mode: string;
 }
 
 const TextForm: React.FC<TextFormProps> = (props) => {
@@ -27,9 +28,13 @@ const TextForm: React.FC<TextFormProps> = (props) => {
         return { value: timeValue, timeUnit: timeUnit };
       };
 
+
+    // Toast Functions
     const copyNotify = () => toast.success('Text copied sucessfully');
-    const pasteNotifyFail = () => toast.error('Paste Fail');
-    const pasteNotifySuccess = () => toast.success('Clipboard Pasted')
+    const pasteNotifyFail = () => toast.error('Paste fail');
+    const pasteNotifySuccess = () => toast.success('Clipboard pasted')
+    const clearSuccess = () => toast.success('Textbox has been cleared')
+    // End of Toast Functions
 
     const handleUcClick = (): void => {
         let newText = text.toUpperCase();
@@ -44,6 +49,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
     const handleClearClick = (): void => {
         let newText = "";
         setText(newText);
+        clearSuccess();
     };
 
     const handleCopy = (): void => {
@@ -74,17 +80,21 @@ const TextForm: React.FC<TextFormProps> = (props) => {
 
     const [text, setText] = useState("");
 
+    console.log(props.mode)
+
+  
 
     return (
         <>
             <div><Toaster/></div>
             <div className="container">
-                <h1>{props.heading}</h1>
+            <h1>{props.heading}</h1>
 
-                <div className="mb-3">
+                <div className="mb-3" >
 
-                    <textarea className="form-control" id="myBox" rows={8} value={text} onChange={handleOnChange}></textarea>
+                    <textarea className="form-control" id="myBox" rows={8} value={text} onChange={handleOnChange} style={props.mode == 'dark' ? {backgroundColor : '#212529' , color : 'white'} : {backgroundColor : 'white' , color : 'black'}  }></textarea>
                 </div>
+                
                 <button className="btn btn-primary mx-2" onClick={handleUcClick}> To UPPERCASE</button>
                 <button className="btn btn-primary mx-2" onClick={handleLcClick}>To lowercase</button>
                 <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
@@ -98,7 +108,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
                 <p>Average Time to read : {timeRead().value} {timeRead().timeUnit}</p>
 
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length>0 ?text : "Enter your text to preview here"}</p>
             </div>
 
         </>
