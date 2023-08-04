@@ -5,6 +5,12 @@ This is a basic web application developed as part of my React tutorial to unders
 
 This web application is designed to serve as a hands-on tutorial for learning React. It covers various basic functionalities and concepts of React, including components, state management, event handling, and more. The tutorial is suitable for beginners and aims to provide a solid foundation in React development.<br><br>
 
+<h2>Changes from Tutorial</h2>
+Implementation of Typescript (Tutorial uses Javascript)<br>
+Minor Code Optimizations<br>
+BOOTSTRAP: bg-dark from tut was decrepitated in 5.3.0 , using data-bs-theme="dark" / data-bs-theme="light" on parent wrapper<br>
+
+
 <h2>Features</h2>
 Introduction to React components<br>
 Understanding and managing component state<br>
