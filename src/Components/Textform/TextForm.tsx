@@ -55,7 +55,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
     const handleCopy = (): void => {
         const copyText = document.getElementById("myBox") as HTMLTextAreaElement | null;
         if (copyText) {
-          copyText.select();
+          // copyText.select();
           navigator.clipboard.writeText(copyText.value);
           copyNotify()
         }
@@ -80,7 +80,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
 
     const [text, setText] = useState("");
 
-    console.log(props.mode)
+   
 
   
 
@@ -95,16 +95,16 @@ const TextForm: React.FC<TextFormProps> = (props) => {
                     <textarea className="form-control" id="myBox" rows={8} value={text} onChange={handleOnChange} style={props.mode == 'dark' ? {backgroundColor : '#212529' , color : 'white'} : {backgroundColor : 'white' , color : 'black'}  }></textarea>
                 </div>
                 
-                <button className="btn btn-primary mx-2" onClick={handleUcClick}> To UPPERCASE</button>
-                <button className="btn btn-primary mx-2" onClick={handleLcClick}>To lowercase</button>
-                <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
-                <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
-                <button className="btn btn-primary mx-2" onClick={handlePaste}>Paste Text</button>
+                <button className="btn btn-primary mx-2 my-1" onClick={handleUcClick}> To UPPERCASE</button>
+                <button className="btn btn-primary mx-2 my-1" onClick={handleLcClick}>To lowercase</button>
+                <button className="btn btn-primary mx-2 my-1" onClick={handleClearClick}>Clear Text</button>
+                <button className="btn btn-primary mx-2 my-1" onClick={handleCopy}>Copy Text</button>
+                <button className="btn btn-primary mx-2 my-1" onClick={handlePaste}>Paste Text</button>
             </div>
 
             <div className="container my-3">
                 <h1 style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>Your text Summery</h1>
-                <p style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>{text.split(" ").length} Words, {text.length} Characters</p>
+                <p style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>{text.split(/\s+/).filter((element)=>element.length!=0).length} Words, {text.length} Characters</p>
                 <p style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>Average Time to read : {timeRead().value} {timeRead().timeUnit}</p>
 
                 <h2 style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>Preview</h2>
