@@ -1,4 +1,4 @@
-import About from "./Components/About/About"
+// import About from "./Components/About/About"
 import Navbar from "./Components/Navbar/Navbar"
 import TextForm from "./Components/Textform/TextForm"
 
@@ -10,10 +10,10 @@ const App = () => {
 
       <div className="container my-3">
       
-      {/* <TextForm heading="Enter your text below" /> */}
+       <TextForm heading="Enter your text below" />
 
       </div>
-      <About />
+      {/* <About /> */}
     </div>
   )
 }

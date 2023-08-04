@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast , { Toaster } from "react-hot-toast";
 
 
 
@@ -10,6 +11,8 @@ interface TextFormProps {
 
 const TextForm: React.FC<TextFormProps> = (props) => {
 
+    const copyNotify = () => toast.success('Text copied sucessfully')
+
     const handleUcClick = (): void => {
         let newText = text.toUpperCase();
         setText(newText)
@@ -17,14 +20,22 @@ const TextForm: React.FC<TextFormProps> = (props) => {
     
     const handleLcClick = (): void => {
         let newText = text.toLowerCase();
-        setText(newText)
+        setText(newText);
     };
     
     const handleClearClick = (): void => {
         let newText = "";
-        setText(newText)
+        setText(newText);
     };
 
+    const handleCopy = (): void => {
+        const copyText = document.getElementById("myBox") as HTMLTextAreaElement | null;
+        if (copyText) {
+          copyText.select();
+          navigator.clipboard.writeText(copyText.value);
+          copyNotify()
+        }
+      };
 
 
     const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -37,6 +48,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
 
     return (
         <>
+            <div><Toaster/></div>
             <div className="container">
                 <h1>{props.heading}</h1>
 
@@ -47,6 +59,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
                 <button className="btn btn-primary mx-2" onClick={handleUcClick}> To UPPERCASE</button>
                 <button className="btn btn-primary mx-2" onClick={handleLcClick}>To lowercase</button>
                 <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
+                <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
             </div>
 
             <div className="container my-3">
