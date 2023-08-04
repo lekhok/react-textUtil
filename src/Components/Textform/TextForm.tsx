@@ -10,6 +10,22 @@ interface TextFormProps {
 }
 
 const TextForm: React.FC<TextFormProps> = (props) => {
+ 
+    const timeRead = (): { value: number; timeUnit: string } => {
+        const timeCalc = 0.008 * text.split(" ").length;
+        let timeValue;
+        let timeUnit;
+    
+        if (timeCalc < 1) {
+          timeValue = Math.round(0.008 * text.split(" ").length * 60);
+          timeUnit = "seconds";
+        } else {
+          timeValue = Number((0.008 * text.split(" ").length).toFixed(2));
+          timeUnit = "minutes";
+        }
+    
+        return { value: timeValue, timeUnit: timeUnit };
+      };
 
     const copyNotify = () => toast.success('Text copied sucessfully')
 
@@ -65,7 +81,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
             <div className="container my-3">
                 <h1>Your text Summery</h1>
                 <p>{text.split(" ").length} Words, {text.length} Characters</p>
-                <p>Average Time to read : {0.008 * text.split(" ").length} Minutes</p>
+                <p>Average Time to read : {timeRead().value} {timeRead().timeUnit}</p>
 
                 <h2>Preview</h2>
                 <p>{text}</p>
