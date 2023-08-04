@@ -21,7 +21,7 @@ const App = () => {
     } 
     else {
       setMode('light')
-      document.body.style.backgroundColor = '#f8f9fa'
+      document.body.style.backgroundColor = 'white'
     }
   }
 

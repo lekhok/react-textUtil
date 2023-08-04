@@ -88,7 +88,7 @@ const TextForm: React.FC<TextFormProps> = (props) => {
         <>
             <div><Toaster/></div>
             <div className="container">
-            <h1>{props.heading}</h1>
+            <h1 style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}} >{props.heading}</h1>
 
                 <div className="mb-3" >
 
@@ -103,12 +103,12 @@ const TextForm: React.FC<TextFormProps> = (props) => {
             </div>
 
             <div className="container my-3">
-                <h1>Your text Summery</h1>
-                <p>{text.split(" ").length} Words, {text.length} Characters</p>
-                <p>Average Time to read : {timeRead().value} {timeRead().timeUnit}</p>
+                <h1 style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>Your text Summery</h1>
+                <p style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>{text.split(" ").length} Words, {text.length} Characters</p>
+                <p style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>Average Time to read : {timeRead().value} {timeRead().timeUnit}</p>
 
-                <h2>Preview</h2>
-                <p>{text.length>0 ?text : "Enter your text to preview here"}</p>
+                <h2 style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>Preview</h2>
+                <p style = {props.mode == 'dark' ? {color : 'white'} : {color : 'black'}}>{text.length>0 ? text : "Enter your text to preview here"}</p>
             </div>
 
         </>
